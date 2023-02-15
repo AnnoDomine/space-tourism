@@ -1,8 +1,8 @@
 import { useMediaQuery } from "@mui/material";
 
 const useBreakpoint = (): NCommon.TBreakpoints => {
-    const tablet = useMediaQuery("(min-width: 375px)");
-    const desktop = useMediaQuery("(min-width: 775px)");
+    const tablet = useMediaQuery("(min-width: 600px)");
+    const desktop = useMediaQuery("(min-width: 900px)");
 
     if (desktop) return "desktop";
     if (tablet) return "tablet";

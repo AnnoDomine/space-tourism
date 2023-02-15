@@ -90,6 +90,8 @@ const theme = createTheme({
             fontFamily: "'Barlow Condensed', sans-serif",
             fontSize: "18px",
             color: "#FFFFFF",
+            lineHeight: "32px",
+            fontWeight: 400,
         },
     },
     palette: {

@@ -1,3 +1,4 @@
+import usePathNavigation from "../../../../utils/usePathNavigation";
 import IconClose from "../../../shared/icons/IconClose";
 import NavigationItem from "../../../shared/typography/NavigationItem";
 
@@ -7,8 +8,13 @@ type Props = {
 };
 
 const NavigationMobile = ({ open, onClose }: Props) => {
+    const pathNavigation = usePathNavigation();
     const handleOnClick = (item: "close" | "home" | "destination" | "crew" | "technology") => {
-        item !== "close" && console.log(`Clicked on ${item}`);
+        if (item !== "close") {
+            pathNavigation.nav(item);
+            onClose();
+            return;
+        }
         onClose();
     };
 
@@ -25,48 +31,53 @@ const NavigationMobile = ({ open, onClose }: Props) => {
                 overflow: "hidden",
             }}
         >
-            <div style={{ margin: "34px 26.5px 0px 32px" }}>
-                <div style={{ width: "195.5px", marginBottom: "49px" }}>
-                    <IconClose
-                        sx={{ fontSize: "19.09", cursor: "pointer", float: "right" }}
+            <div style={{ height: "100vh", margin: "34px 0px 0px 32px" }}>
+                <div style={{ height: 19, width: "198px", marginRight: "24px" }}>
+                    <div
+                        style={{ width: 19, height: 19, cursor: "pointer", float: "right" }}
                         onClick={() => handleOnClick("close")}
-                        color="tertiary"
-                    />
+                    >
+                        <IconClose sx={{ fontSize: "19" }} color="tertiary" />
+                    </div>
                 </div>
-                <div style={{ width: "227.5px" }}>
+                <div style={{ paddingTop: "49px" }}>
                     <div>
                         <NavigationItem
                             id="home"
                             breakpoint="mobile"
                             prefix="00"
                             item={"Home"}
+                            active={pathNavigation.currentRoute === "home"}
                             onClick={() => handleOnClick("home")}
                         />
                     </div>
-                    <div style={{ width: "100%" }}>
+                    <div>
                         <NavigationItem
-                            id="home"
+                            id="destination"
                             breakpoint="mobile"
                             prefix="01"
                             item={"Destination"}
+                            active={pathNavigation.currentRoute === "destination"}
                             onClick={() => handleOnClick("destination")}
                         />
                     </div>
-                    <div style={{ width: "100%" }}>
+                    <div>
                         <NavigationItem
-                            id="home"
+                            id="crew"
                             breakpoint="mobile"
                             prefix="02"
                             item={"Crew"}
+                            active={pathNavigation.currentRoute === "crew"}
                             onClick={() => handleOnClick("crew")}
                         />
                     </div>
-                    <div style={{ width: "100%" }}>
+                    <div>
                         <NavigationItem
-                            id="home"
+                            id="technology"
                             breakpoint="mobile"
                             prefix="03"
                             item={"Technology"}
+                            active={pathNavigation.currentRoute === "technology"}
                             onClick={() => handleOnClick("technology")}
                         />
                     </div>

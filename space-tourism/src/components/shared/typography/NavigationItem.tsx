@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import theme from "../../theme";
 
 type Props = {
@@ -7,10 +7,11 @@ type Props = {
     id: string;
     prefix?: string;
     item: string;
+    active: boolean;
     onClick: () => void;
 };
 
-const NavigationItem = ({ breakpoint, id, prefix = "", item, onClick }: Props) => {
+const NavigationItem = ({ breakpoint, id, prefix = "", item, active, onClick }: Props) => {
     const [hovered, setHovered] = useState<boolean>(false);
 
     return (
@@ -26,10 +27,14 @@ const NavigationItem = ({ breakpoint, id, prefix = "", item, onClick }: Props) =
                 cursor: "pointer",
                 ...(breakpoint === "mobile"
                     ? {
-                          borderRight: `${hovered ? "4" : "0"}px solid ${theme.palette.tertiary.dark}`,
+                          borderRight: `${active || hovered ? "4" : "0"}px solid ${
+                              hovered ? theme.palette.tertiary.dark : theme.palette.tertiary.main
+                          }`,
                       }
                     : {
-                          borderBottom: `${hovered ? "4" : "0"}px solid ${theme.palette.tertiary.dark}`,
+                          borderBottom: `${active || hovered ? "4" : "0"}px solid ${
+                              hovered ? theme.palette.tertiary.dark : theme.palette.tertiary.main
+                          }`,
                           margin: "0px 18px 0px 18px",
                       }),
             }}
