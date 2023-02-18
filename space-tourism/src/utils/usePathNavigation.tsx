@@ -62,7 +62,7 @@ const usePathNavigation = () => {
     };
 
     useEffect(
-        () => setCurrentRoute(() => location.pathname.slice(1) ?? "home"),
+        () => setCurrentRoute(() => window.localStorage.getItem("route") ?? "home"),
         [location.pathname, window.localStorage.getItem("route")]
     );
 

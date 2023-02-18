@@ -11,10 +11,12 @@ const Navigation = (props: Props) => {
         <div
             style={{
                 height: "88px",
+                width: "100vw",
                 display: "flex",
-                flexDirection: "row",
-                flexWrap: "nowrap",
+                flexFlow: "row nowrap",
                 justifyContent: "space-between",
+                position: "fixed",
+                backgroundColor: "#00000033",
             }}
         >
             <NavigationHeaderMobile />

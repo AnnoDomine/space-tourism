@@ -47,7 +47,7 @@ const NavigationMobile = ({ open, onClose }: Props) => {
                             breakpoint="mobile"
                             prefix="00"
                             item={"Home"}
-                            active={pathNavigation.currentRoute === "home"}
+                            active={pathNavigation.currentRoute === "home" ?? pathNavigation.currentRoute === ""}
                             onClick={() => handleOnClick("home")}
                         />
                     </div>

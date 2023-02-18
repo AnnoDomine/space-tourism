@@ -5,6 +5,7 @@ interface IMobileFontSizeMap {
         topLable: string;
         title: string;
         text: string;
+        explore: string;
     };
     destination: {
         topLable: string;
@@ -15,6 +16,7 @@ interface IMobileFontSizeMap {
         distance: string;
         estTravelTime: string;
         travelTime: string;
+        navigation: string;
     };
     crew: {
         topLable: string;
@@ -40,6 +42,7 @@ export const mobileFontSize: IMobileFontSizeMap = {
         topLable: "16px",
         title: "80px",
         text: "15px",
+        explore: "20px",
     },
     destination: {
         topLable: "16px",
@@ -50,6 +53,7 @@ export const mobileFontSize: IMobileFontSizeMap = {
         distance: "28px",
         estTravelTime: "14px",
         travelTime: "28px",
+        navigation: "14px",
     },
     crew: {
         topLable: "19px",
@@ -67,7 +71,7 @@ export const mobileFontSize: IMobileFontSizeMap = {
 
 type TMobileFontSizeReturn = {
     sx: {
-        fontSize: string;
+        fontSize?: string;
         textAlign: string;
         marginX: string;
     };
@@ -76,7 +80,7 @@ type TMobileFontSizeReturn = {
 type TKeyOfMobileFontSize = keyof typeof mobileFontSize;
 
 /**
- * Generic have to be on of
+ * Generic have to be one of
  *
  * TFontSizeHomeMap | TFontSizeDestinationMap | TFontSizeCrewMap | TFontSizetechnologyMap
  *
@@ -93,11 +97,9 @@ function getMobileFontSize<TextType>(route: TKeyOfMobileFontSize, text: TextType
     if (route === "technology" && isTypeOf<TFontSizetechnologyMap>(text))
         selectedFontSize = mobileFontSize.technology[text];
 
-    if (selectedFontSize === "") throw Error("Wrong text id");
-
     return {
         sx: {
-            fontSize: selectedFontSize,
+            ...(selectedFontSize !== "" && { fontSize: selectedFontSize }),
             textAlign: "center",
             marginX: "24px",
         },

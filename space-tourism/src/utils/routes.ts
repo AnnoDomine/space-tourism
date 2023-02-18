@@ -5,12 +5,12 @@ export const ROUTES = {
     },
     crew: {
         base: "crew",
-        duglasHurley: "duglas-hurley",
+        douglasHurley: "douglas-hurley",
         markShuttleworth: "mark-shuttleworth",
         victorGlover: "victor-glover",
         anoushehAnsari: "anousheh-ansari",
     },
-    destinatin: {
+    destination: {
         base: "destination",
         moon: "moon",
         mars: "mars",
