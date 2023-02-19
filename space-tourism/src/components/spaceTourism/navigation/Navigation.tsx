@@ -1,25 +1,26 @@
-import { useState } from "react";
-import IconHamburger from "../../shared/icons/IconHamburger";
-import LogoComplete from "../../shared/icons/LogoComplete";
-import NavigationHeaderMobile from "./navigationItems/NavigationHeaderMobile";
-import NavigationMobile from "./navigationItems/NavigationMobile";
+import useBreakpoint from "../../../utils/useBreakpoint";
+import NavigationHeaderMobile from "./navigationMobile/NavigationHeaderMobile";
+import { navigationStyles } from "./navigationStyles";
+import NavigationHeaderTablet from "./navigationTablet/NavigationHeaderTablet";
 
-type Props = {};
+const Navigation = () => {
+    const breakpoint = useBreakpoint();
 
-const Navigation = (props: Props) => {
     return (
         <div
             style={{
-                height: "88px",
                 width: "100vw",
                 display: "flex",
                 flexFlow: "row nowrap",
                 justifyContent: "space-between",
                 position: "fixed",
-                backgroundColor: "#00000033",
+                alignItems: "center",
+                ...navigationStyles[breakpoint],
             }}
         >
-            <NavigationHeaderMobile />
+            {breakpoint === "mobile" && <NavigationHeaderMobile />}
+            {breakpoint === "tablet" && <NavigationHeaderTablet />}
+            {breakpoint === "desktop" && <NavigationHeaderTablet />}
         </div>
     );
 };

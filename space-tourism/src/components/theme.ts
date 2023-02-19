@@ -40,24 +40,28 @@ const theme = createTheme({
             fontSize: "150px",
             color: "#FFFFFF",
             textTransform: "uppercase",
+            letterSpacing: "2px",
         },
         h2: {
             fontFamily: "'Bellefair', serif",
             fontSize: "100px",
             color: "#FFFFFF",
             textTransform: "uppercase",
+            letterSpacing: "2px",
         },
         h3: {
             fontFamily: "'Bellefair', serif",
             fontSize: "56px",
             color: "#FFFFFF",
             textTransform: "uppercase",
+            letterSpacing: "2px",
         },
         h4: {
             fontFamily: "'Bellefair', serif",
             fontSize: "32px",
             color: "#FFFFFF",
             textTransform: "uppercase",
+            letterSpacing: "2px",
         },
         h5: {
             fontFamily: "'Barlow Condensed', sans-serif",
@@ -71,6 +75,7 @@ const theme = createTheme({
             fontSize: "28px",
             color: "#FFFFFF",
             textTransform: "uppercase",
+            letterSpacing: "2px",
         },
         subtitle2: {
             fontFamily: "'Barlow Condensed', sans-serif",
@@ -92,6 +97,7 @@ const theme = createTheme({
             color: "#FFFFFF",
             lineHeight: "32px",
             fontWeight: 400,
+            letterSpacing: "1px",
         },
     },
     palette: {

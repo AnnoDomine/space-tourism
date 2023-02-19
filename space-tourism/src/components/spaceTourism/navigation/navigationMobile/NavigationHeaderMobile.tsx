@@ -3,16 +3,22 @@ import IconHamburger from "../../../shared/icons/IconHamburger";
 import LogoComplete from "../../../shared/icons/LogoComplete";
 import NavigationMobile from "./NavigationMobile";
 
-type Props = {};
-
-const NavigationHeaderMobile = (props: Props) => {
+const NavigationHeaderMobile = () => {
     const [navigationOpened, setNavigationOpened] = useState<boolean>(false);
 
     return (
         <>
-            <LogoComplete />
+            <LogoComplete logoSize={40} marginLeft={24} />
             <div
-                style={{ width: 20, height: 20, cursor: "pointer", float: "right", margin: "33px 24px 0px 0px" }}
+                style={{
+                    width: 20,
+                    height: 20,
+                    cursor: "pointer",
+                    float: "right",
+                    marginRight: "24px",
+                    display: "flex",
+                    alignItems: "center",
+                }}
                 onClick={() => setNavigationOpened(true)}
             >
                 <IconHamburger

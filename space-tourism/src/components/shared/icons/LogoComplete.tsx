@@ -1,35 +1,24 @@
 import IconLogo from "./IconLogo";
 
-type Props = {};
+type Props = {
+    logoSize: number;
+    marginLeft: number;
+};
 
-const LogoComplete = (props: Props) => {
+const LogoComplete = ({ logoSize, marginLeft }: Props) => {
     return (
         <div
             style={{
-                width: "40px",
-                height: "40px",
-                margin: "24px",
+                width: `${logoSize}px`,
+                height: `${logoSize}px`,
+                marginLeft: `${marginLeft}px`,
                 display: "flex",
                 flexDirection: "row",
                 flexWrap: "nowrap",
+                alignItems: "center",
             }}
         >
-            <div>
-                <div>
-                    <IconLogo color="tertiary" style={{ fontSize: "20px" }} />
-                </div>
-                <div style={{ marginTop: "-4px" }}>
-                    <IconLogo color="tertiary" style={{ fontSize: "20px", transform: "rotate(270deg)" }} />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <IconLogo color="tertiary" style={{ fontSize: "20px", transform: "rotate(90deg)" }} />
-                </div>
-                <div style={{ marginTop: "-4px" }}>
-                    <IconLogo color="tertiary" style={{ fontSize: "20px", transform: "rotate(0deg)" }} />
-                </div>
-            </div>
+            <IconLogo size={logoSize} />
         </div>
     );
 };

@@ -1,9 +1,9 @@
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
-import { mobileFontSize } from "../../../../utils/mobileTextFontSize";
-import { ROUTES } from "../../../../utils/routes";
+import useBreakpoint from "../../../../utils/useBreakpoint";
 import theme from "../../../theme";
 import { ITechnologyContent } from "../technologies";
+import { technologyNavigationStyles } from "./technologyNavigationStyles";
 
 type Props = {
     selectedTechnology: string;
@@ -12,19 +12,18 @@ type Props = {
 };
 
 const TechnologyNavigation = ({ selectTechnology, selectedTechnology, technologies }: Props) => {
+    const breakpoint = useBreakpoint();
     const [hoveredTechnology, setHoveredTechnology] = useState<string>("");
 
     return (
         <div
             style={{
                 display: "flex",
-                width: "152px",
-                height: "40px",
-                margin: "34px auto 26px",
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 flexWrap: "nowrap",
+                ...technologyNavigationStyles[breakpoint].container,
             }}
         >
             {technologies.map((technology) => {
@@ -36,8 +35,6 @@ const TechnologyNavigation = ({ selectTechnology, selectedTechnology, technologi
                         key={`${technology.route}_navi_item`}
                         style={{
                             display: "flex",
-                            height: "40px",
-                            width: "40px",
                             borderRadius: "40px",
                             alignContent: "center",
                             alignItems: "center",
@@ -52,12 +49,13 @@ const TechnologyNavigation = ({ selectTechnology, selectedTechnology, technologi
                                 selectedTechnology === technology.route && {
                                     backgroundColor: theme.palette.tertiary.main,
                                 }),
+                            ...technologyNavigationStyles[breakpoint].item,
                         }}
                     >
                         <Typography
                             variant="subtitle2"
                             style={{
-                                fontSize: mobileFontSize.technology.topLable,
+                                ...technologyNavigationStyles[breakpoint].text,
                                 ...(hoveredTechnology !== technology.route &&
                                     selectedTechnology === technology.route && { color: theme.palette.primary.main }),
                             }}

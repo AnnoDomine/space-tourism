@@ -1,7 +1,9 @@
-const navigationHeight = 88;
-
 const statics = {
-    navigationHeight,
+    navigationHeight: {
+        desktop: 96,
+        tablet: 96,
+        mobile: 88,
+    },
 };
 
 export default statics;

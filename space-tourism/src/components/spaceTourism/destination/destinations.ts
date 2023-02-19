@@ -2,6 +2,7 @@ import moon from "/destination/image-moon.webp";
 import mars from "/destination/image-mars.webp";
 import europa from "/destination/image-europa.webp";
 import titan from "/destination/image-titan.webp";
+import { ROUTES } from "../../../utils/routes";
 
 export interface IDestinationContent {
     route: string;
@@ -15,7 +16,7 @@ export interface IDestinationContent {
 
 export const destinations: IDestinationContent[] = [
     {
-        route: "moon",
+        route: ROUTES.destination.moon,
         picture: moon,
         planet: "Moon",
         description:
@@ -25,7 +26,7 @@ export const destinations: IDestinationContent[] = [
         travelTimeUnit: "day",
     },
     {
-        route: "mars",
+        route: ROUTES.destination.mars,
         picture: mars,
         planet: "Mars",
         description:
@@ -35,7 +36,7 @@ export const destinations: IDestinationContent[] = [
         travelTimeUnit: "month",
     },
     {
-        route: "europa",
+        route: ROUTES.destination.europa,
         picture: europa,
         planet: "Europa",
         description:
@@ -45,7 +46,7 @@ export const destinations: IDestinationContent[] = [
         travelTimeUnit: "year",
     },
     {
-        route: "titan",
+        route: ROUTES.destination.titan,
         picture: titan,
         planet: "Titan",
         description:

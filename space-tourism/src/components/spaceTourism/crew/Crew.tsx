@@ -1,16 +1,24 @@
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
+import { ROUTES } from "../../../utils/routes";
+import useBreakpoint from "../../../utils/useBreakpoint";
 import CrewContent from "./crewContent/CrewContent";
 import { crewMember } from "./crewMember";
 import CrewNavigation from "./crewNavigation/CrewNavigation";
-// import { destinations } from "./destinations";
+import { crewStyles } from "./crewStyles";
 
 const Crew = () => {
-    const [selectedMember, setSelectedMember] = useState<string>("douglas-hurley");
+    const breakpoint = useBreakpoint();
+
+    const [selectedMember, setSelectedMember] = useState<string>(ROUTES.crew.douglasHurley);
 
     return (
         <div>
-            <div style={{ textAlign: "center" }}>
+            <div
+                style={{
+                    ...(crewStyles[breakpoint].headerContainer as CSSProperties),
+                }}
+            >
                 <Typography
                     variant="navigation"
                     sx={{
@@ -20,11 +28,20 @@ const Crew = () => {
                         whiteSpace: "nowrap",
                         marginRight: "11px",
                         opacity: 0.25,
+                        ...crewStyles[breakpoint].headerText,
                     }}
                 >
                     02
                 </Typography>
-                <Typography variant="navigation" sx={{ width: "100%", textOverflow: "clip", whiteSpace: "nowrap" }}>
+                <Typography
+                    variant="navigation"
+                    sx={{
+                        width: "100%",
+                        textOverflow: "clip",
+                        whiteSpace: "nowrap",
+                        ...crewStyles[breakpoint].headerText,
+                    }}
+                >
                     Meet your crew
                 </Typography>
             </div>

@@ -1,15 +1,21 @@
 import { Typography } from "@mui/material";
-import React from "react";
-import { mobileFontSize } from "../../../../utils/mobileTextFontSize";
+import React, { CSSProperties } from "react";
+import { destinationNavigationStyles } from "./destinationNavigationStyles";
 
 type Props = {
     destinationName: string;
+    breakpoint: NCommon.TBreakpoints;
 };
 
-const DestinationNavigationItem = ({ destinationName }: Props) => {
+const DestinationNavigationItem = ({ destinationName, breakpoint }: Props) => {
     return (
         <>
-            <Typography variant="subtitle2" style={{ fontSize: mobileFontSize.destination.navigation }}>
+            <Typography
+                variant="subtitle2"
+                style={{
+                    ...(destinationNavigationStyles[breakpoint].text as CSSProperties),
+                }}
+            >
                 {destinationName}
             </Typography>
         </>

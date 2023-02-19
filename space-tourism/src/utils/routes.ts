@@ -23,4 +23,10 @@ export const ROUTES = {
         spaceport: "spaceport",
         spaceCapsule: "space-capsule",
     },
-};
+} as const;
+
+// Returns the base route of the content routes as type
+export type TRoutes = (typeof ROUTES)[Exclude<keyof typeof ROUTES, "base">][keyof (typeof ROUTES)[Exclude<
+    keyof typeof ROUTES,
+    "base"
+>]];

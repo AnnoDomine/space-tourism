@@ -1,10 +1,11 @@
 import { Divider, Typography } from "@mui/material";
 import convertNumeral from "../../../../utils/convertNumeral";
-import { mobileFontSize } from "../../../../utils/mobileTextFontSize";
 import useBreakpoint from "../../../../utils/useBreakpoint";
 import theme from "../../../theme";
 import { destinationPictureStyle } from "./destinationContentStyle";
 import type { IDestinationContent } from "../destinations";
+import { CSSProperties, useEffect } from "react";
+import setHeaderTitle from "../../../../utils/setHeaderTitle";
 
 type Props = {
     children: JSX.Element;
@@ -14,7 +15,10 @@ type Props = {
 const DestinationContent = ({ children, destination }: Props) => {
     const breakpoint = useBreakpoint();
 
+    useEffect(() => setHeaderTitle("Destination", destination?.planet || ""));
+
     if (destination === null) return <>Not found</>;
+
     return (
         <div
             style={{
@@ -22,52 +26,84 @@ const DestinationContent = ({ children, destination }: Props) => {
                 flexDirection: "column",
                 flexWrap: "nowrap",
                 alignItems: "stretch",
-                padding: "24px",
+                ...(destinationPictureStyle[breakpoint].container as CSSProperties),
             }}
         >
             <div
                 style={{
                     backgroundImage: `url(${destination.picture})`,
                     backgroundSize: "cover",
-                    ...destinationPictureStyle()[breakpoint],
                     margin: "auto",
+                    ...destinationPictureStyle[breakpoint].image,
                 }}
             />
-            <div>{children}</div>
-            <div style={{ margin: "auto", textAlign: "center" }}>
-                <Typography variant="h2" style={{ fontSize: mobileFontSize.destination.destination }}>
-                    {destination.planet}
-                </Typography>
-            </div>
-            <div style={{ margin: "auto", textAlign: "center" }}>
-                <Typography variant="body1" style={{ fontSize: mobileFontSize.destination.description }}>
-                    {destination.description}
-                </Typography>
-            </div>
-            <Divider sx={{ marginY: "32px", borderColor: `${theme.palette.secondary.main}38` }} />
-            <div style={{ margin: "auto", textAlign: "center", marginBottom: "32px" }}>
-                <div>
-                    <Typography variant="subtitle2" style={{ fontSize: mobileFontSize.destination.avgDistance }}>
-                        Avg. distance
+            <div>
+                <div>{children}</div>
+                <div style={{ margin: "auto", textAlign: "center" }}>
+                    <Typography
+                        variant="h2"
+                        style={{
+                            ...destinationPictureStyle[breakpoint].text.destination,
+                        }}
+                    >
+                        {destination.planet}
+                    </Typography>
+                </div>
+                <div style={{ margin: "auto", textAlign: "center" }}>
+                    <Typography variant="body1" style={{ ...destinationPictureStyle[breakpoint].text.description }}>
+                        {destination.description}
                     </Typography>
                 </div>
                 <div>
-                    <Typography variant="subtitle1" style={{ fontSize: mobileFontSize.destination.distance }}>
-                        {convertNumeral(destination.distance)} km
-                    </Typography>
-                </div>
-            </div>
-            <div style={{ margin: "auto", textAlign: "center" }}>
-                <div>
-                    <Typography variant="subtitle2" style={{ fontSize: mobileFontSize.destination.estTravelTime }}>
-                        Est. travel time
-                    </Typography>
-                </div>
-                <div>
-                    <Typography variant="subtitle1" style={{ fontSize: mobileFontSize.destination.distance }}>
-                        {destination.travelTime.toString()} {destination.travelTimeUnit}
-                        {destination.travelTime > 1 && "s"}
-                    </Typography>
+                    <Divider
+                        sx={{
+                            borderColor: `${theme.palette.secondary.main}38`,
+                            ...destinationPictureStyle[breakpoint].divider,
+                        }}
+                    />
+                    <div
+                        style={{
+                            ...(destinationPictureStyle[breakpoint].contentInformations as CSSProperties),
+                        }}
+                    >
+                        <div style={{ textAlign: "center" }}>
+                            <div>
+                                <Typography
+                                    variant="subtitle2"
+                                    style={{ ...destinationPictureStyle[breakpoint].text.avgDistance }}
+                                >
+                                    Avg. distance
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography
+                                    variant="subtitle1"
+                                    style={{ ...destinationPictureStyle[breakpoint].text.distance }}
+                                >
+                                    {convertNumeral(destination.distance)} km
+                                </Typography>
+                            </div>
+                        </div>
+                        <div style={{ textAlign: "center" }}>
+                            <div>
+                                <Typography
+                                    variant="subtitle2"
+                                    style={{ ...destinationPictureStyle[breakpoint].text.estTravelTime }}
+                                >
+                                    Est. travel time
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography
+                                    variant="subtitle1"
+                                    style={{ ...destinationPictureStyle[breakpoint].text.distance }}
+                                >
+                                    {destination.travelTime.toString()} {destination.travelTimeUnit}
+                                    {destination.travelTime > 1 && "s"}
+                                </Typography>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

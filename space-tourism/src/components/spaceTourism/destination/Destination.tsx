@@ -1,15 +1,24 @@
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
+import { ROUTES } from "../../../utils/routes";
+import useBreakpoint from "../../../utils/useBreakpoint";
 import DestinationContent from "./DestinationContent/DestinationContent";
 import DestinationNavigation from "./DestinationNavigation/DestinationNavigation";
 import { destinations } from "./destinations";
+import { destinationStyles } from "./destinationStyles";
 
 const Destination = () => {
-    const [selectedDestination, setSelectedDestination] = useState<string>("moon");
+    const breakpoint = useBreakpoint();
+
+    const [selectedDestination, setSelectedDestination] = useState<string>(ROUTES.destination.moon);
 
     return (
         <div>
-            <div style={{ textAlign: "center" }}>
+            <div
+                style={{
+                    ...(destinationStyles[breakpoint].headerContainer as CSSProperties),
+                }}
+            >
                 <Typography
                     variant="navigation"
                     sx={{
@@ -19,11 +28,20 @@ const Destination = () => {
                         whiteSpace: "nowrap",
                         marginRight: "11px",
                         opacity: 0.25,
+                        ...destinationStyles[breakpoint].headerText,
                     }}
                 >
                     01
                 </Typography>
-                <Typography variant="navigation" sx={{ width: "100%", textOverflow: "clip", whiteSpace: "nowrap" }}>
+                <Typography
+                    variant="navigation"
+                    sx={{
+                        width: "100%",
+                        textOverflow: "clip",
+                        whiteSpace: "nowrap",
+                        ...destinationStyles[breakpoint].headerText,
+                    }}
+                >
                     Pick your destination
                 </Typography>
             </div>

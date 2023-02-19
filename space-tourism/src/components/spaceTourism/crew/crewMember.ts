@@ -2,6 +2,7 @@ import duglasHurley from "/crew/image-douglas-hurley.webp";
 import markShuttleworth from "/crew/image-mark-shuttleworth.webp";
 import victorGlover from "/crew/image-victor-glover.webp";
 import anoushehAnsari from "/crew/image-anousheh-ansari.webp";
+import { ROUTES } from "../../../utils/routes";
 
 export interface ICrewMemberContent {
     id: number;
@@ -15,7 +16,7 @@ export interface ICrewMemberContent {
 export const crewMember: ICrewMemberContent[] = [
     {
         id: 1,
-        route: "douglas-hurley",
+        route: ROUTES.crew.douglasHurley,
         picture: duglasHurley,
         position: "Commander",
         description:
@@ -24,7 +25,7 @@ export const crewMember: ICrewMemberContent[] = [
     },
     {
         id: 2,
-        route: "mark-shuttleworth",
+        route: ROUTES.crew.markShuttleworth,
         picture: markShuttleworth,
         position: "Mission specialist",
         description:
@@ -33,16 +34,16 @@ export const crewMember: ICrewMemberContent[] = [
     },
     {
         id: 3,
-        route: "victor-glover",
+        route: ROUTES.crew.victorGlover,
         picture: victorGlover,
         position: "Pilot",
         description:
-            "Pilot on the first operational flight of the SpaceX Crew Dragon to the International Space Station. Glover is a commander in the U.S. Navy where he pilots an F/A-18.He was a crew member of Expedition 64, and served as a station systems flight engineer. ",
+            "Pilot on the first operational flight of the SpaceX Crew Dragon to the International Space Station. Glover is a commander in the U.S. Navy where he pilots an F/A-18. He was a crew member of Expedition 64, and served as a station systems flight engineer. ",
         name: "Victor Glover",
     },
     {
         id: 4,
-        route: "anousheh-ansari",
+        route: ROUTES.crew.anoushehAnsari,
         picture: anoushehAnsari,
         position: "Flight Engineer",
         description:

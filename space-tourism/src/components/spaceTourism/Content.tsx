@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import Navigation from "./navigation/Navigation";
 import useBreakpoint from "../../utils/useBreakpoint";
 import usePathNavigation from "../../utils/usePathNavigation";
-import { useWindowSize } from "usehooks-ts";
 import statics from "../../utils/statics";
 
 type Props = {};
@@ -11,7 +10,6 @@ type Props = {};
 const Content = (props: Props) => {
     const breakpoint = useBreakpoint();
     const pathNavigation = usePathNavigation();
-    const windowHeight = useWindowSize().height;
 
     const [backgroundUrl, setBackgroundUrl] = useState<string>(pathNavigation.background()[breakpoint]);
 
@@ -31,12 +29,10 @@ const Content = (props: Props) => {
                 transition: "background 0.5",
             }}
         >
-            <div style={{ height: `${statics.navigationHeight}px` }}>
+            <div style={{ height: `${statics.navigationHeight[breakpoint]}px` }}>
                 <Navigation />
             </div>
-            <div>
-                <Outlet />
-            </div>
+            <Outlet />
         </div>
     );
 };

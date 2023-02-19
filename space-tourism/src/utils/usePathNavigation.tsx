@@ -17,15 +17,15 @@ import backgroundMobileTechnology from "/technology/background-technology-mobile
 import backgroundTabletTechnology from "/technology/background-technology-tablet.jpg";
 import backgroundDesktopTechnology from "/technology/background-technology-desktop.jpg";
 
-import type { To } from "react-router-dom";
+import type { TRoutes } from "./routes";
 
 const usePathNavigation = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const nav = (to: To) => {
-        window.localStorage.setItem("route", to as string);
-        navigate(`${to}`);
+    const nav = (to: TRoutes) => {
+        window.localStorage.setItem("route", to);
+        navigate(to);
     };
 
     const [currentRoute, setCurrentRoute] = useState<string>("");

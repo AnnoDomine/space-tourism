@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
-import React from "react";
-import { mobileFontSize } from "../../../../utils/mobileTextFontSize";
+import { useEffect } from "react";
+import setHeaderTitle from "../../../../utils/setHeaderTitle";
 import useBreakpoint from "../../../../utils/useBreakpoint";
 import { ITechnologyContent } from "../technologies";
 import { technologyContentStyles } from "./technologyContentStyles";
@@ -13,6 +13,8 @@ type Props = {
 const TechnologyContent = ({ children, technologies }: Props) => {
     const breakpoint = useBreakpoint();
 
+    useEffect(() => setHeaderTitle("Technology", technologies?.technology || ""));
+
     if (technologies === null) return <>Not found</>;
     return (
         <div
@@ -21,37 +23,39 @@ const TechnologyContent = ({ children, technologies }: Props) => {
                 flexDirection: "column",
                 flexWrap: "nowrap",
                 alignItems: "stretch",
-                paddingTop: "24px",
+                ...technologyContentStyles[breakpoint].container,
             }}
         >
             <div
                 style={{
                     backgroundImage: `url(${technologies.picture})`,
                     backgroundSize: "cover",
-                    ...technologyContentStyles()[breakpoint],
                     margin: "auto",
+                    ...technologyContentStyles[breakpoint].image,
                 }}
             />
             <div>{children}</div>
             <div
                 style={{
-                    padding: "24px",
                     margin: "auto",
                     textAlign: "center",
+                    ...technologyContentStyles[breakpoint].content,
                 }}
             >
-                <div style={{ margin: "auto", textAlign: "center", marginBottom: "9px" }}>
-                    <Typography variant="navigation" style={{ fontSize: mobileFontSize.technology.topLable }}>
+                <div style={{ margin: "auto", textAlign: "center", ...technologyContentStyles[breakpoint].topLabel }}>
+                    <Typography variant="navigation" style={{ ...technologyContentStyles[breakpoint].text.topLable }}>
                         THE TERMINOLOGY…
                     </Typography>
                 </div>
-                <div style={{ margin: "auto", textAlign: "center" }}>
-                    <Typography variant="h3" style={{ fontSize: mobileFontSize.technology.topic }}>
+                <div style={{ margin: "auto", textAlign: "center", ...technologyContentStyles[breakpoint].topic }}>
+                    <Typography variant="h3" style={{ ...technologyContentStyles[breakpoint].text.topic }}>
                         {technologies.technology}
                     </Typography>
                 </div>
-                <div style={{ margin: "auto", textAlign: "center", marginTop: "16px" }}>
-                    <Typography variant="body1" style={{ fontSize: mobileFontSize.technology.description }}>
+                <div
+                    style={{ margin: "auto", textAlign: "center", ...technologyContentStyles[breakpoint].description }}
+                >
+                    <Typography variant="body1" style={{ ...technologyContentStyles[breakpoint].text.description }}>
                         {technologies.description}
                     </Typography>
                 </div>

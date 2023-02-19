@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import theme from "../../theme";
+import { navigationItemStyles } from "./navigationItemStyles";
 
 type Props = {
     breakpoint: "desktop" | "tablet" | "mobile";
@@ -21,10 +22,9 @@ const NavigationItem = ({ breakpoint, id, prefix = "", item, active, onClick }: 
             onMouseLeave={() => setHovered(false)}
             onClick={onClick}
             style={{
-                width: breakpoint === "mobile" ? "217.5px" : "100%",
                 overflow: "hidden",
-                padding: breakpoint === "mobile" ? "16px 0px" : "18px 0px 14px 0px",
                 cursor: "pointer",
+                ...navigationItemStyles[breakpoint].container,
                 ...(breakpoint === "mobile"
                     ? {
                           borderRight: `${active || hovered ? "4" : "0"}px solid ${
@@ -32,10 +32,9 @@ const NavigationItem = ({ breakpoint, id, prefix = "", item, active, onClick }: 
                           }`,
                       }
                     : {
-                          borderBottom: `${active || hovered ? "4" : "0"}px solid ${
+                          borderBottom: `${active || hovered ? "3" : "0"}px solid ${
                               hovered ? theme.palette.tertiary.dark : theme.palette.tertiary.main
                           }`,
-                          margin: "0px 18px 0px 18px",
                       }),
             }}
         >
@@ -53,7 +52,15 @@ const NavigationItem = ({ breakpoint, id, prefix = "", item, active, onClick }: 
                     {prefix}
                 </Typography>
             )}
-            <Typography variant="navigation" sx={{ width: "100%", textOverflow: "clip", whiteSpace: "nowrap" }}>
+            <Typography
+                variant="navigation"
+                sx={{
+                    width: "100%",
+                    textOverflow: "clip",
+                    whiteSpace: "nowrap",
+                    ...(breakpoint === "tablet" && { fontSize: navigationItemStyles.tablet.text }),
+                }}
+            >
                 {item}
             </Typography>
         </div>

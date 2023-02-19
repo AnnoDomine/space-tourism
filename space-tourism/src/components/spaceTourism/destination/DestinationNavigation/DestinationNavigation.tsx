@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import useBreakpoint from "../../../../utils/useBreakpoint";
 import theme from "../../../theme";
 import { IDestinationContent } from "../destinations";
 import DestinationNavigationItem from "./DestinationNavigationItem";
+import { destinationNavigationStyles } from "./destinationNavigationStyles";
 
 type Props = {
     selectedDestination: string;
@@ -10,19 +12,19 @@ type Props = {
 };
 
 const DestinationNavigation = ({ selectedDestination, destinations, selectDestination }: Props) => {
+    const breakpoint = useBreakpoint();
+
     const [hoveredDestination, setHoveredDestination] = useState<string>("");
 
     return (
         <div
             style={{
                 display: "flex",
-                width: "237px",
-                height: "28px",
-                margin: "26px auto 20px",
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 flexWrap: "nowrap",
+                ...destinationNavigationStyles[breakpoint].container,
             }}
         >
             {destinations.map((destination) => {
@@ -34,7 +36,6 @@ const DestinationNavigation = ({ selectedDestination, destinations, selectDestin
                         key={`${destination.route}_navi_item`}
                         style={{
                             cursor: "pointer",
-                            height: "25px",
                             borderBottom: `${
                                 hoveredDestination === destination.route || selectedDestination === destination.route
                                     ? "3"
@@ -44,9 +45,10 @@ const DestinationNavigation = ({ selectedDestination, destinations, selectDestin
                                     ? theme.palette.tertiary.dark
                                     : theme.palette.tertiary.main
                             }`,
+                            ...destinationNavigationStyles[breakpoint].navigation,
                         }}
                     >
-                        <DestinationNavigationItem destinationName={destination.planet} />
+                        <DestinationNavigationItem destinationName={destination.planet} breakpoint={breakpoint} />
                     </div>
                 );
             })}

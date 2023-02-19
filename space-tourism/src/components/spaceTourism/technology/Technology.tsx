@@ -1,21 +1,20 @@
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import { ROUTES } from "../../../utils/routes";
 import useBreakpoint from "../../../utils/useBreakpoint";
 import { technologies } from "./technologies";
 import TechnologyContent from "./technologyContent/TechnologyContent";
 import TechnologyNavigation from "./technologyNavigation/TechnologyNavigation";
+import { technologyStyles } from "./technologyStyles";
 
-type Props = {};
-
-const Technology = (props: Props) => {
+const Technology = () => {
     const breakpoint = useBreakpoint();
 
     const [selectedTechnology, setSelectedTechnology] = useState<string>(ROUTES.technology.launchVehicle);
 
     return (
         <div>
-            <div style={{ textAlign: "center" }}>
+            <div style={{ ...(technologyStyles[breakpoint].headerContainer as CSSProperties) }}>
                 <Typography
                     variant="navigation"
                     sx={{
@@ -25,11 +24,20 @@ const Technology = (props: Props) => {
                         whiteSpace: "nowrap",
                         marginRight: "11px",
                         opacity: 0.25,
+                        ...technologyStyles[breakpoint].headerText,
                     }}
                 >
                     02
                 </Typography>
-                <Typography variant="navigation" sx={{ width: "100%", textOverflow: "clip", whiteSpace: "nowrap" }}>
+                <Typography
+                    variant="navigation"
+                    sx={{
+                        width: "100%",
+                        textOverflow: "clip",
+                        whiteSpace: "nowrap",
+                        ...technologyStyles[breakpoint].headerText,
+                    }}
+                >
                     Space launch 101
                 </Typography>
             </div>
