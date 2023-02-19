@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { useWindowSize } from "usehooks-ts";
+import setHeaderTitle from "../../../utils/setHeaderTitle";
 import statics from "../../../utils/statics";
 import useBreakpoint from "../../../utils/useBreakpoint";
 import theme from "../../theme";
@@ -11,6 +12,8 @@ const Home = () => {
     const windowHeight = useWindowSize().height;
 
     const [hoverExplore, setHoverExplore] = useState<boolean>(false);
+
+    useEffect(() => setHeaderTitle("Home"));
 
     const isMobile = breakpoint === "mobile";
 
